@@ -15,7 +15,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # checkout all history to do git diff
-      - id: calculate-policy-dirs
+      - name: calculate which policies need a CI job
+        id: calculate-policy-dirs
         shell: bash
         run: |
           # policy_working_dirs must be a string on the form of '[ "policies/Foo", "policies/Bar" ]' or '[]'
