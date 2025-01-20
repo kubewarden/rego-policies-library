@@ -37,7 +37,7 @@ jobs:
     strategy:
       matrix:
         policy-working-dir: ${{ fromJSON(needs.calculate-policy-matrix.outputs.policy-working-dirs) }}
-    uses: kubewarden/github-actions/.github/workflows/reusable-test-policy-rego.yml@v3.4.2
+    uses: kubewarden/github-actions/.github/workflows/reusable-test-policy-rego.yml@v3.4.5
     with:
       policy-working-dir: ${{ matrix.policy-working-dir }}
       # hardcode a bogus but semver valid version for `make check-artifacthub.yml`.
