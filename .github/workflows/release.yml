@@ -13,7 +13,7 @@ jobs:
       policy-version: ${{ steps.calculate-vars.outputs.policy_version }}
       policy-id: ${{ steps.calculate-vars.outputs.policy_id }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - id: calculate-vars
         shell: bash
         run: |
@@ -39,7 +39,7 @@ jobs:
   unit-tests:
     needs: calculate-policy-from-tag
     name: run unit tests and linters
-    uses: kubewarden/github-actions/.github/workflows/reusable-test-policy-rego.yml@v3.4.8
+    uses: kubewarden/github-actions/.github/workflows/reusable-test-policy-rego.yml@36f0782e949d8597c061ca0d519f7e17a2813190 # v3.4.8
     with:
       policy-working-dir: ${{ needs.calculate-policy-from-tag.outputs.policy-working-dir }}
       policy-version: ${{ needs.calculate-policy-from-tag.outputs.policy-version }}
@@ -53,7 +53,7 @@ jobs:
       packages: write
       # Required by cosign keyless signing
       id-token: write
-    uses: kubewarden/github-actions/.github/workflows/reusable-release-policy-rego.yml@v3.4.8
+    uses: kubewarden/github-actions/.github/workflows/reusable-release-policy-rego.yml@36f0782e949d8597c061ca0d519f7e17a2813190 # v3.4.8
     with:
       oci-target: ghcr.io/${{ github.repository_owner }}/policies/${{ needs.calculate-policy-from-tag.outputs.policy-id }}
       policy-working-dir: ${{ needs.calculate-policy-from-tag.outputs.policy-working-dir }}
