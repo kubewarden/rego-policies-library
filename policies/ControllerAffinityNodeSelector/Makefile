@@ -19,7 +19,7 @@ endif
 test:
 	opa test policy.rego tests/*.rego
 
-annotated-policy.wasm: policy.wasm metadata.yml artifacthub-pkg.yml
+annotated-policy.wasm: policy.wasm metadata.yml
 	kwctl annotate -m metadata.yml -u README.md -o annotated-policy.wasm policy.wasm
 
 .PHONY: e2e-tests
