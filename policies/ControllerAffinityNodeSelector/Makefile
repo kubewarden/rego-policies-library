@@ -2,8 +2,6 @@
 POLICY_TYPE ?= gatekeeper
 SOURCE_FILES := $(shell find . -type f -name '*.rego')
 
-VERSION ?= $(shell sed --posix -n -e 's,^version\:\ \(.*\),\1,p' artifacthub-pkg.yml)
-
 policy.wasm: $(SOURCE_FILES)
 ifeq ($(POLICY_TYPE), gatekeeper)
 	opa build -t wasm -e policy/violation -o bundle.tar.gz policy.rego
@@ -21,15 +19,7 @@ endif
 test:
 	opa test policy.rego tests/*.rego
 
-artifacthub-pkg.yml: metadata.yml
-	$(warning If you are updating the artifacthub-pkg.yml file for a release, \
-		remember to set the VERSION variable with the proper value. \
-		To use the latest tag, use the following command:  \
-		make VERSION=$$(git describe --tags --abbrev=0 | sed 's/\(.*\)\/\(.*\)$/\2/' | cut -c2-) artifacthub-pkg.yml)
-	kwctl scaffold artifacthub \
-	    --metadata-path metadata.yml --version $(VERSION) --gh-release-tag $(notdir $(CURDIR))/v$(VERSION) --output artifacthub-pkg.yml
-
-annotated-policy.wasm: policy.wasm metadata.yml artifacthub-pkg.yml
+annotated-policy.wasm: policy.wasm metadata.yml
 	kwctl annotate -m metadata.yml -u README.md -o annotated-policy.wasm policy.wasm
 
 .PHONY: e2e-tests
