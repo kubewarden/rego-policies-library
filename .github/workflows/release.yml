@@ -39,7 +39,7 @@ jobs:
   unit-tests:
     needs: calculate-policy-from-tag
     name: run unit tests and linters
-    uses: kubewarden/github-actions/.github/workflows/reusable-test-policy-rego.yml@v3.5.0-rc4
+    uses: kubewarden/github-actions/.github/workflows/reusable-test-policy-rego.yml@v3.5.0-rc5
     with:
       policy-working-dir: ${{ needs.calculate-policy-from-tag.outputs.policy-working-dir }}
 
@@ -52,7 +52,7 @@ jobs:
       packages: write
       # Required by cosign keyless signing
       id-token: write
-    uses: kubewarden/github-actions/.github/workflows/reusable-release-policy-rego.yml@v3.5.0-rc4
+    uses: kubewarden/github-actions/.github/workflows/reusable-release-policy-rego.yml@v3.5.0-rc5
     with:
       oci-target: ghcr.io/${{ github.repository_owner }}/policies/${{ needs.calculate-policy-from-tag.outputs.policy-id }}
       policy-working-dir: ${{ needs.calculate-policy-from-tag.outputs.policy-working-dir }}
