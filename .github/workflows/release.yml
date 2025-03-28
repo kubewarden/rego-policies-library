@@ -69,4 +69,5 @@ jobs:
       policy-working-dir: ${{ needs.calculate-policy-from-tag.outputs.policy-working-dir }}
     secrets:
       # Required to dispatch the release event to the policy-catalog repository
-      WORKFLOW_PAT: ${{ secrets.WORKFLOW_PAT }}
+      APP_ID: ${{ secrets.APP_ID }}
+      APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
