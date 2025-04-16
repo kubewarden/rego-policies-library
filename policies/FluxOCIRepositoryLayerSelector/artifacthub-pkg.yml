@@ -4,31 +4,31 @@
 #
 # This config can be saved to its default location with:
 #   kwctl scaffold artifacthub > artifacthub-pkg.yml 
-version: 1.0.2
+version: 1.0.3
 name: ocirepository-layer-selector
 displayName: OCIRepository Layer Selector
-createdAt: 2025-04-11T10:36:49.149485885Z
+createdAt: 2025-04-16T12:51:46.69467996Z
 description: OCIRepository layer selector must only reference predefined media/operation type.
 license: Apache-2.0
 homeURL: https://github.com/kubewarden/rego-policies-library
 containersImages:
 - name: policy
-  image: ghcr.io/kubewarden/policies/ocirepository-layer-selector:v1.0.2
+  image: ghcr.io/kubewarden/policies/ocirepository-layer-selector:v1.0.3
 keywords:
 - flux
 links:
 - name: policy
-  url: https://github.com/kubewarden/rego-policies-library/releases/download/v1.0.2/policy.wasm
+  url: https://github.com/kubewarden/rego-policies-library/releases/download/v1.0.3/policy.wasm
 - name: source
   url: https://github.com/kubewarden/rego-policies-library
 install: |
   The policy can be obtained using [`kwctl`](https://github.com/kubewarden/kwctl):
   ```console
-  kwctl pull ghcr.io/kubewarden/policies/ocirepository-layer-selector:v1.0.2
+  kwctl pull ghcr.io/kubewarden/policies/ocirepository-layer-selector:v1.0.3
   ```
   Then, generate the policy manifest and tune it to your liking. For example:
   ```console
-  kwctl scaffold manifest -t ClusterAdmissionPolicy registry://ghcr.io/kubewarden/policies/ocirepository-layer-selector:v1.0.2
+  kwctl scaffold manifest -t ClusterAdmissionPolicy registry://ghcr.io/kubewarden/policies/ocirepository-layer-selector:v1.0.3
   ```
 maintainers:
 - name: Kubewarden developers
@@ -39,6 +39,20 @@ recommendations:
 - url: https://artifacthub.io/packages/helm/kubewarden/kubewarden-controller
 annotations:
   kubewarden/mutation: 'false'
+  kubewarden/questions-ui: |
+    questions:
+      - variable: media_types
+        default:
+        required: true
+        group: Settings
+        type: array[
+        label: Media types
+      - variable: operations
+        default: ["extract"]
+        required: true
+        group: Settings
+        type: array[
+        label: Operations
   kubewarden/resources: OCIRepository
   kubewarden/rules: |
     - apiGroups:
