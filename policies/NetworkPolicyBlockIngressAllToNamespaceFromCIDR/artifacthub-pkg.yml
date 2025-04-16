@@ -4,29 +4,29 @@
 #
 # This config can be saved to its default location with:
 #   kwctl scaffold artifacthub > artifacthub-pkg.yml 
-version: 1.0.2
+version: 1.0.3
 name: network-block-all-ingress-traffic-to-namespace-from-cidr-block
 displayName: Network Block All Ingress Traffic To Namespace From CIDR Block
-createdAt: 2025-04-11T10:50:28.318143949Z
+createdAt: 2025-04-16T13:05:18.631195943Z
 description: "If you are using a CNI that allows for Network Policies, you can use this Policy to block all Egress traffic from a specified namespace to a CIDR block of IP addresses. \n\nBy default, if no policies exist in a namespace, then all ingress and egress traffic is allowed to and from pods in that namespace. \n"
 license: Apache-2.0
 homeURL: https://github.com/kubewarden/rego-policies-library
 containersImages:
 - name: policy
-  image: ghcr.io/kubewarden/policies/network-block-all-ingress-traffic-to-namespace-from-cidr-block:v1.0.2
+  image: ghcr.io/kubewarden/policies/network-block-all-ingress-traffic-to-namespace-from-cidr-block:v1.0.3
 links:
 - name: policy
-  url: https://github.com/kubewarden/rego-policies-library/releases/download/v1.0.2/policy.wasm
+  url: https://github.com/kubewarden/rego-policies-library/releases/download/v1.0.3/policy.wasm
 - name: source
   url: https://github.com/kubewarden/rego-policies-library
 install: |
   The policy can be obtained using [`kwctl`](https://github.com/kubewarden/kwctl):
   ```console
-  kwctl pull ghcr.io/kubewarden/policies/network-block-all-ingress-traffic-to-namespace-from-cidr-block:v1.0.2
+  kwctl pull ghcr.io/kubewarden/policies/network-block-all-ingress-traffic-to-namespace-from-cidr-block:v1.0.3
   ```
   Then, generate the policy manifest and tune it to your liking. For example:
   ```console
-  kwctl scaffold manifest -t ClusterAdmissionPolicy registry://ghcr.io/kubewarden/policies/network-block-all-ingress-traffic-to-namespace-from-cidr-block:v1.0.2
+  kwctl scaffold manifest -t ClusterAdmissionPolicy registry://ghcr.io/kubewarden/policies/network-block-all-ingress-traffic-to-namespace-from-cidr-block:v1.0.3
   ```
 maintainers:
 - name: Kubewarden developers
@@ -37,6 +37,20 @@ recommendations:
 - url: https://artifacthub.io/packages/helm/kubewarden/kubewarden-controller
 annotations:
   kubewarden/mutation: 'false'
+  kubewarden/questions-ui: |
+    questions:
+      - variable: namespace
+        default:
+        required: true
+        group: Settings
+        type: string
+        label: Namespace
+      - variable: cidr
+        default:
+        required: true
+        group: Settings
+        type: string
+        label: Cidr
   kubewarden/resources: NetworkPolicy
   kubewarden/rules: |
     - apiGroups:
