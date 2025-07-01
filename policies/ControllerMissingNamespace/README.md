@@ -1,8 +1,12 @@
 # Block Workloads Created Without Specifying Namespace
 
-Using this Policy, you can prohibit workloads from being created in a default namespace due to the lack of a namespace label.
+Using this Policy, you can prohibit workloads from being created in a default
+namespace due to the lack of a namespace label.
 
-Specify a `namespace` label.
+Note: this policy lacks general usefulness, since the Kubernetes API already
+requires a namespace to be specified for namespaced resources.
+
+The resource must specify a `namespace` label.
 
 ```
 metadata:
