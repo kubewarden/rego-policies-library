@@ -4,16 +4,16 @@
 #
 # This config can be saved to its default location with:
 #   kwctl scaffold artifacthub > artifacthub-pkg.yml 
-version: 1.0.3
+version: 1.0.4
 name: container-running-as-user
 displayName: Container Running As User
-createdAt: 2025-04-16T12:06:29.887991866Z
+createdAt: 2025-07-03T10:23:00.885932713Z
 description: "Containers has a feature in which you specify the ID of the user which all processes in the container will run with. This Policy enforces that the `securityContext.runAsUser` attribute is set to a uid greater than root uid. Running as root user gives the container full access to all resources in the VM it is running on. Containers should not run with such access rights unless required by design. \n"
 license: Apache-2.0
 homeURL: https://github.com/kubewarden/rego-policies-library
 containersImages:
 - name: policy
-  image: ghcr.io/kubewarden/policies/container-running-as-user:v1.0.3
+  image: ghcr.io/kubewarden/policies/container-running-as-user:v1.0.4
 keywords:
 - pci-dss
 - cis-benchmark
@@ -23,17 +23,17 @@ keywords:
 - default
 links:
 - name: policy
-  url: https://github.com/kubewarden/rego-policies-library/releases/download/v1.0.3/policy.wasm
+  url: https://github.com/kubewarden/rego-policies-library/releases/download/v1.0.4/policy.wasm
 - name: source
   url: https://github.com/kubewarden/rego-policies-library
 install: |
   The policy can be obtained using [`kwctl`](https://github.com/kubewarden/kwctl):
   ```console
-  kwctl pull ghcr.io/kubewarden/policies/container-running-as-user:v1.0.3
+  kwctl pull ghcr.io/kubewarden/policies/container-running-as-user:v1.0.4
   ```
   Then, generate the policy manifest and tune it to your liking. For example:
   ```console
-  kwctl scaffold manifest -t ClusterAdmissionPolicy registry://ghcr.io/kubewarden/policies/container-running-as-user:v1.0.3
+  kwctl scaffold manifest -t ClusterAdmissionPolicy registry://ghcr.io/kubewarden/policies/container-running-as-user:v1.0.4
   ```
 maintainers:
 - name: Kubewarden developers
@@ -50,7 +50,7 @@ annotations:
         default: 0
         required: true
         group: Settings
-        type: integer
+        type: int
         label: Uid
   kubewarden/resources: Deployment, Job, ReplicationController, ReplicaSet, DaemonSet, StatefulSet, CronJob
   kubewarden/rules: |
