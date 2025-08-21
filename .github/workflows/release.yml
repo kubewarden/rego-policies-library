@@ -42,7 +42,7 @@ jobs:
   unit-tests:
     needs: calculate-policy-from-tag
     name: run unit tests and linters
-    uses: kubewarden/github-actions/.github/workflows/reusable-test-policy-rego.yml@17f4dbf90d74f26892f7cc18179d08c4d63914d9 # v4.5.4
+    uses: kubewarden/github-actions/.github/workflows/reusable-test-policy-rego.yml@20e6274f09e9aee263969a8783488369cbdb1e1b # v4.5.5
     with:
       policy-working-dir: ${{ needs.calculate-policy-from-tag.outputs.policy-working-dir }}
 
@@ -55,7 +55,7 @@ jobs:
       packages: write
       # Required by cosign keyless signing
       id-token: write
-    uses: kubewarden/github-actions/.github/workflows/reusable-release-policy-rego.yml@17f4dbf90d74f26892f7cc18179d08c4d63914d9 # v4.5.4
+    uses: kubewarden/github-actions/.github/workflows/reusable-release-policy-rego.yml@20e6274f09e9aee263969a8783488369cbdb1e1b # v4.5.5
     with:
       oci-target: ghcr.io/${{ github.repository_owner }}/policies/${{ needs.calculate-policy-from-tag.outputs.policy-id }}
       policy-working-dir: ${{ needs.calculate-policy-from-tag.outputs.policy-working-dir }}
@@ -63,7 +63,7 @@ jobs:
 
   release-catalog:
     needs: [calculate-policy-from-tag, release]
-    uses: kubewarden/github-actions/.github/workflows/reusable-release-policy-catalog.yml@17f4dbf90d74f26892f7cc18179d08c4d63914d9 # v4.5.4
+    uses: kubewarden/github-actions/.github/workflows/reusable-release-policy-catalog.yml@20e6274f09e9aee263969a8783488369cbdb1e1b # v4.5.5
     with:
       policy-name: ${{ needs.calculate-policy-from-tag.outputs.policy-name }}
       policy-working-dir: ${{ needs.calculate-policy-from-tag.outputs.policy-working-dir }}
