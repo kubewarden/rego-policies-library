@@ -37,6 +37,6 @@ jobs:
     strategy:
       matrix:
         policy-working-dir: ${{ fromJSON(needs.calculate-policy-matrix.outputs.policy-working-dirs) }}
-    uses: kubewarden/github-actions/.github/workflows/reusable-test-policy-rego.yml@73e92c9cf9059299619e79372b78eb09a5934fa0 # v4.5.11
+    uses: kubewarden/github-actions/.github/workflows/reusable-test-policy-rego.yml@605a03917fbc6b4b523145a1a78cf72a680f5f36 # v4.5.12
     with:
       policy-working-dir: ${{ matrix.policy-working-dir }}
