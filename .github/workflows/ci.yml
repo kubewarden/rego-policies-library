@@ -12,7 +12,7 @@ jobs:
     outputs:
       policy-working-dirs: ${{ steps.calculate-policy-dirs.outputs.policy_working_dirs }}
     steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0 # checkout all history to do git diff
       - name: calculate which policies need a CI job
@@ -37,6 +37,6 @@ jobs:
     strategy:
       matrix:
         policy-working-dir: ${{ fromJSON(needs.calculate-policy-matrix.outputs.policy-working-dirs) }}
-    uses: kubewarden/github-actions/.github/workflows/reusable-test-policy-rego.yml@247608f0b5a1562a6fd2576e5b2e6cbe62551baf # v4.5.15
+    uses: kubewarden/github-actions/.github/workflows/reusable-test-policy-rego.yml@f1695ca9a575bf58b85d6c3652c7ff7d1d12ec24 # v4.5.16
     with:
       policy-working-dir: ${{ matrix.policy-working-dir }}
