@@ -1,3 +1,8 @@
+> [!NOTE]
+> This repository is now archived, and has been merged into
+> https://github.com/kubewarden/policies
+
+
 # Rego policies library
 
 This repository contains a collection of Rego policies that can be used with
